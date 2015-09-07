@@ -26,32 +26,38 @@ pal = cm.get_cmap(cmap_name)
 
 
 
+# get the rgb values as a numpy array, and create segments
 pts = np.array([ pal(i)[:3] for i in range(256)])
 pts = pts.reshape(-1, 1,  3)
 segs = np.concatenate([pts[:-1], pts[1:]], axis = 1)
 
+# color each segment based on the cmap, and create a collection
 lc = Line3DCollection(segs, cmap = pal)
 lc.set_array(np.array(range(256)))
 
 
+# create the figure
 fig = plt.figure(figsize = (8, 6))
-ax = plt.subplot2grid((1,4), (0,0), colspan = 3, projection = '3d', aspect = 1)
+
+
+# create the path
+# add_axes([left, bottom, width, height], ...
+ax = fig.add_axes([0,0, .8, 1], projection = '3d', aspect = 1)
 ax.set_xlabel('Red')
 ax.set_ylabel('Green')
 ax.set_zlabel('Blue')
-ax.set_title('{} Palette in RGB Space'.format(cmap_name))
-ax.add_collection(lc)
+ax.set_title('{} palette in RGB space'.format(cmap_name))
+line = ax.add_collection(lc)
 
 
-# make the gradient
+# create the color bar
 grad_width = 20
 gradient = np.linspace(0, 1, 256)
 pal_image = np.outer(gradient, np.ones(grad_width))
-ax2 = plt.subplot2grid( (1,4), (0,3) )
-ax2.imshow(pal_image, cmap = pal)
-ax2.set_axis_off()
+cbar = fig.add_axes([0.8,0,.2,1])
+im = cbar.imshow(pal_image, cmap = pal)
+cbar.set_yticks([])
 
-# fig.tight_layout()
 
 if outfile:
     fig.savefig(outfile, dpi = 120)
