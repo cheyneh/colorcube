@@ -7,14 +7,21 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
 from matplotlib import cm
 import seaborn as sns
-sns.set_style('dark')
+sns.set_style('white')
 
 
+# TODO: use argparse to make this less awful
 # get the color palette, default to cubehelix
 try:
     cmap_name = argv[1]
 except IndexError:
     cmap_name = 'cubehelix'
+try:
+    outfile = argv[2]
+except IndexError:
+    outfile = None
+
+
 pal = cm.get_cmap(cmap_name)
 
 
@@ -46,5 +53,7 @@ ax2.set_axis_off()
 
 # fig.tight_layout()
 
-
-plt.show()
+if outfile:
+    fig.savefig(outfile, dpi = 120)
+else:
+    plt.show()
