@@ -61,6 +61,6 @@ cube = make_cube(pal)
 
 
 if outfile:
-    cube.savefig(outfile, dpi = 72)
+    cube.savefig(outfile, dpi = 144)
 else:
     plt.show()
