@@ -9,7 +9,13 @@ produces:
 
 ![cubehelix](https://raw.github.com/cheyneh/colorcube/master/cubehelix.png)
 
-while 
+    $ ./colorcube.py coolwarm
+
+produces:
+
+![coolwarm](https://raw.github.com/cheyneh/colorcube/master/coolwarm.png)
+
+and 
 
     $ ./colorcube.py jet
 
