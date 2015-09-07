@@ -2,7 +2,15 @@
 A simple tool for visualizing a colormap by plotting it on the RGB color cube. 
 Accepts any of the colormaps known to matplotlib.
 
+Syntax:
+    
+    $./colorcube.py <cmap_name> <outfile>
+
+If not given an outfile, will default to an interactive matplotlib plot, 
+allowing you to rotate and zoom the 3D axes. 
+
 ## Example usage:
+
     $ ./colorcube.py cubehelix
 
 produces:
