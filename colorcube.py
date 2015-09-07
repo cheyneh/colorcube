@@ -7,6 +7,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
 from matplotlib import cm
 import seaborn as sns
+sns.set_style('dark')
 
 
 # get the color palette, default to cubehelix
@@ -26,7 +27,8 @@ lc = Line3DCollection(segs, cmap = pal)
 lc.set_array(np.array(range(256)))
 
 
-ax = plt.subplot2grid((1,4), (0,0), colspan = 3, projection = '3d')
+fig = plt.figure(figsize = (8, 6))
+ax = plt.subplot2grid((1,4), (0,0), colspan = 3, projection = '3d', aspect = 1)
 ax.set_xlabel('Red')
 ax.set_ylabel('Green')
 ax.set_zlabel('Blue')
@@ -41,6 +43,8 @@ pal_image = np.outer(gradient, np.ones(grad_width))
 ax2 = plt.subplot2grid( (1,4), (0,3) )
 ax2.imshow(pal_image, cmap = pal)
 ax2.set_axis_off()
+
+# fig.tight_layout()
 
 
 plt.show()
