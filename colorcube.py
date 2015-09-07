@@ -1,3 +1,6 @@
+# Tool to visualize a colormap by plotting it on the RGB cube
+# cheyne.homberger@gmail.com
+
 from sys import argv
 import numpy as np
 import matplotlib as mpl
@@ -8,21 +11,6 @@ from mpl_toolkits.mplot3d.art3d import Line3DCollection
 from matplotlib import cm
 import seaborn as sns
 sns.set_style('white')
-
-
-# TODO: use argparse to make this less awful
-# get the color palette, default to cubehelix
-try:
-    cmap_name = argv[1]
-except IndexError:
-    cmap_name = 'cubehelix'
-try:
-    outfile = argv[2]
-except IndexError:
-    outfile = None
-
-
-pal = cm.get_cmap(cmap_name)
 
 
 def make_cube(pal):
@@ -57,10 +45,25 @@ def make_cube(pal):
 
     return fig
 
-cube = make_cube(pal)
+
+if __name__ == '__main__':
+    # TODO: use argparse to make this less awful
+    # get the color palette, default to cubehelix
+    try:
+        cmap_name = argv[1]
+    except IndexError:
+        cmap_name = 'cubehelix'
+    try:
+        outfile = argv[2]
+    except IndexError:
+        outfile = None
+
+    pal = cm.get_cmap(cmap_name)
+
+    cube = make_cube(pal)
 
 
-if outfile:
-    cube.savefig(outfile, dpi = 144)
-else:
-    plt.show()
+    if outfile:
+        cube.savefig(outfile, dpi = 144)
+    else:
+        plt.show()
