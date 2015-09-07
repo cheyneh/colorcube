@@ -1,5 +1,6 @@
 # colorcube
-A simple tool for visualizing a colorma by plotting it on the RGB color cube. 
+A simple tool for visualizing a colormap by plotting it on the RGB color cube. 
+Accepts any of the colormaps known to matplotlib.
 
 ## Example usage:
     >>> ./colorcube.py cubehelix
