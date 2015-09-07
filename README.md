@@ -3,7 +3,7 @@ A simple tool for visualizing a colormap by plotting it on the RGB color cube.
 Accepts any of the colormaps known to matplotlib.
 
 ## Example usage:
-    >>> ./colorcube.py cubehelix
+    $ ./colorcube.py cubehelix
 
 produces:
 
@@ -11,7 +11,7 @@ produces:
 
 while 
 
-    >>> ./colorcube.py jet
+    $ ./colorcube.py jet
 
 produces:
 
