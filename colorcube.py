@@ -50,7 +50,7 @@ def make_cube(pal):
     grad_width = 20
     gradient = np.linspace(0, 1, 256)
     pal_image = np.outer(gradient, np.ones(grad_width))
-    cbar = fig.add_axes([0.8,0,.2,1])
+    cbar = fig.add_axes([0.8,.05,.2,.90])
     im = cbar.imshow(pal_image, cmap = pal)
     cbar.set_yticks([])
 
