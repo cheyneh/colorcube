@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # Tool to visualize a colormap by plotting it on the RGB cube
 # cheyne.homberger@gmail.com
 
@@ -5,11 +6,11 @@ from sys import argv
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from matplotlib.collections import LineCollection
 from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
 from matplotlib import cm
 import seaborn as sns
+
 sns.set_style('white')
 
 
@@ -21,7 +22,7 @@ def make_cube(pal):
 
     # color each segment based on the cmap, and create a collection
     lc = Line3DCollection(segs, cmap = pal)
-    lc.set_array(np.array(range(256)))
+    lc.set_array(np.arange(256))
 
     # create the figure
     fig = plt.figure(figsize = (8, 6))
@@ -32,14 +33,17 @@ def make_cube(pal):
     ax.set_ylabel('Green')
     ax.set_zlabel('Blue')
     ax.set_title('{} palette in RGB space'.format(cmap_name))
-    line = ax.add_collection(lc)
+    ax.add_collection(lc)
+    ax.set_xlim3d(0,1)
+    ax.set_ylim3d(0,1)
+    ax.set_zlim3d(0,1)
 
     # create the color bar
     grad_width = 20
     gradient = np.linspace(0, 1, 256)
     pal_image = np.outer(gradient, np.ones(grad_width))
     cbar = fig.add_axes([0.8,.1,.2,.8])
-    im = cbar.imshow(pal_image, cmap = pal)
+    cbar.imshow(pal_image, cmap = pal)
     cbar.set_xticks([])
     cbar.set_yticks([])
 
