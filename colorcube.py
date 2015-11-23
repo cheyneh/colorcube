@@ -14,7 +14,7 @@ import seaborn as sns
 sns.set_style('white')
 
 
-def make_cube(pal):
+def make_cube(pal, cmap_name=None):
     # get the rgb values as a numpy array, and create segments
     pts = np.array([ pal(i)[:3] for i in range(256)])
     pts = pts.reshape(-1, 1,  3)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
     pal = cm.get_cmap(cmap_name)
 
-    cube = make_cube(pal)
+    cube = make_cube(pa, cmap_namel)
 
 
     if outfile:
